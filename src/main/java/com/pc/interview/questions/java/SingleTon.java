@@ -35,11 +35,13 @@ public class SingleTon {
         }
     }
 
-    class MySingleTonClass {
+    static class MySingleTonClass {
 
-        private volatile MySingleTonClass instance; // Volatile guarantees the happens before relationship starting Java 6.
+        private static volatile MySingleTonClass instance; // Volatile guarantees the happens before relationship starting Java 6.
 
-        MySingleTonClass getInstance() {
+        private MySingleTonClass() {}
+
+        public static MySingleTonClass getInstance() {
             if(instance == null) {
                 synchronized (MySingleTon.class) {
                     if(instance == null)
